@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USGN - Unité Spéciale de la Garde Nationale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-card: #0c1222;
+            --bg-card-inner: #10172a;
+            --border-color: #1e293b;
+            --accent-gold: #f59e0b;
+            --accent-gold-glow: rgba(245, 158, 11, 0.25);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Cairo', 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body[dir="ltr"] {
+            font-family: 'Inter', 'Cairo', sans-serif;
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: radial-gradient(circle at top, #111b33 0%, var(--bg-main) 75%);
+        }
+
+        .emblem {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: var(--accent-gold);
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        header .subtitle {
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        header .desc {
+            max-width: 750px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #090e1a;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-switch {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 25px;
+        }
+
+        /* Welcome & Principle Box */
+        .welcome-box {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .principle-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .principle-banner span {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: var(--accent-gold);
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Grids */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 18px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .card h3 {
+            color: var(--accent-gold);
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .code-pill {
+            display: inline-block;
+            background: #172036;
+            color: #f87171;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            direction: ltr;
+        }
+
+        /* Division Cards */
+        .div-card {
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        .div-card .div-code {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .div-card .div-name {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* Commands List */
+        .cmd-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        .cmd-row:last-child {
+            border-bottom: none;
+        }
+
+        .cmd-desc {
+            color: var(--text-muted);
+        }
+
+        .cmd-code {
+            font-family: monospace;
+            color: #e2e8f0;
+            font-weight: 600;
+            direction: ltr;
+        }
+
+        /* Table (10-Codes) */
+        .table-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.88rem;
+        }
+
+        body[dir="ltr"] th, body[dir="ltr"] td {
+            text-align: left;
+        }
+
+        th {
+            background: #090e1a;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        td.code-col {
+            font-weight: 800;
+            color: #fff;
+            width: 120px;
+            direction: ltr;
+        }
+
+        /* Numbered Rule Items */
+        .rule-item {
+            background: var(--bg-card-inner);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .rule-num {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-gold);
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        /* Force Matrix */
+        .matrix-level {
+            background: var(--bg-card-inner);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-right: 3px solid var(--accent-gold);
+        }
+
+        body[dir="ltr"] .matrix-level {
+            border-right: none;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .matrix-level.lvl-4 {
+            border-color: var(--danger);
+        }
+
+        .matrix-level h4 {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .matrix-level.lvl-4 h4 {
+            color: var(--danger);
+        }
+
+        /* Charges */
+        .charge-item {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .charge-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.88rem;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .charge-desc {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: block;
+        }
+
+        /* Ranks Grid */
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px 15px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .rank-card.high-command {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.08);
+        }
+
+        .rank-card .rank-name {
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .rank-card .rank-num {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.9rem; }
+        }
+    </style>
+</head>
+<body dir="rtl">
+
+    <!-- HEADER -->
+    <header>
+        <div class="emblem">🛡️</div>
+        <h1>USGN</h1>
+        <div class="subtitle">UNITÉ SPÉCIALE DE LA GARDE NATIONALE</div>
+        <p class="desc" data-ar="الدليل الرسمي لوحدة التدخل السريع والعمليات الخاصة للحرس الوطني (USGN) - مرجع موحد ومباشر لكل عنصر في الوحدة: آليات العمل، الأوامر، الرتب، القضايا، وقواعد الاشتباك." data-en="Official Handbook for the Special Unit of the National Guard (USGN) - Direct reference for every operator: protocols, commands, ranks, charges, and rules of engagement.">
+            الدليل الرسمي لوحدة التدخل السريع والعمليات الخاصة للحرس الوطني (USGN) - مرجع موحد ومباشر لكل عنصر في الوحدة: آليات العمل، الأوامر، الرتب، القضايا، وقواعد الاشتباك.
+        </p>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-brand">★ USGN HANDBOOK</div>
+        <div class="nav-links">
+            <a href="#notes" data-ar="ملاحظات هامة" data-en="Important Notes">ملاحظات هامة</a>
+            <a href="#divisions" data-ar="الفرق" data-en="Divisions">الفرق</a>
+            <a href="#commands" data-ar="الأوامر" data-en="Commands">الأوامر</a>
+            <a href="#codes" data-ar="Radio Codes" data-en="Radio Codes">Radio Codes</a>
+            <a href="#rules" data-ar="القوانين" data-en="Rules">القوانين</a>
+            <a href="#matrix" data-ar="Force Matrix" data-en="Force Matrix">Force Matrix</a>
+            <a href="#tazer" data-ar="Tazer Rules" data-en="Tazer Rules">Tazer Rules</a>
+            <a href="#charges" data-ar="القضايا" data-en="Charges">القضايا</a>
+            <a href="#ranks" data-ar="الرتب" data-en="Ranks">الرتب</a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+            <button class="lang-btn" onclick="setLang('en')">English</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- WELCOME -->
+        <div class="welcome-box">
+            <h2 data-ar="مرحباً بك في الوحدة الخاصة للحرس الوطني (USGN)" data-en="Welcome to the Special Unit of the National Guard (USGN)">مرحباً بك في الوحدة الخاصة للحرس الوطني (USGN)</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;" data-ar="هدفنا مكافحة الإرهاب، حماية الأمن القومي، احترام الـ Roleplay، اتباع التسلسل القيادي، والعمل بروح الفريق التكتيكي." data-en="Our mission is counter-terrorism, national security, respecting Roleplay, following chain of command, and tactical teamwork.">
+                هدفنا مكافحة الإرهاب، حماية الأمن القومي، احترام الـ Roleplay، اتباع التسلسل القيادي، والعمل بروح الفريق التكتيكي.
+            </p>
+            <div class="principle-banner">
+                <span data-ar="المبدأ الأساسي:" data-en="Core Principle:">المبدأ الأساسي:</span>
+                <span style="color: #fff; font-weight: 400;" data-ar="كن مستعداً، استخدم أقل مستوى قوة مناسب، احترم أوامر القيادة العليا، وسلامة الرهائن والمواطنين هي الأولوية القصوى." data-en="Stay ready, use appropriate force levels, respect high command orders, and hostage/civilian safety is top priority.">
+                    كن مستعداً، استخدم أقل مستوى قوة مناسب، احترم أوامر القيادة العليا، وسلامة الرهائن والمواطنين هي الأولوية القصوى.
+                </span>
+            </div>
+        </div>
+
+        <!-- IMPORTANT NOTES -->
+        <h2 id="notes" class="section-title" data-ar="Important Notes" data-en="Important Notes">Important Notes</h2>
+        <div class="grid-4">
+            <div class="card">
+                <h3 data-ar="🟢 بداية الخدمة" data-en="🟢 On Duty">🟢 بداية الخدمة</h3>
+                <p data-ar="في بداية الخدمة سجل دخولك في الراديو باستعمال /setfreq 1 أو /pr، مثال: تسجيل دخول — الاسم — [Rank]" data-en="At start of shift, sign into radio using /setfreq 1 or /pr. Example: On Duty — Name — [Rank]">
+                    في بداية الخدمة سجل دخولك في الراديو باستعمال <span class="code-pill">/setfreq 1</span> أو <span class="code-pill">/pr</span>، مثال: تسجيل دخول — الاسم — [Rank]
+                </p>
+            </div>
+            <div class="card">
+                <h3 data-ar="📷 Body Camera" data-en="📷 Body Camera">📷 Body Camera</h3>
+                <p data-ar="يجب ارتداء الكاميرا التكتيكية أثناء الخدمة في جميع العمليات." data-en="Tactical body camera must be worn on duty during all operations.">
+                    يجب ارتداء الكاميرا التكتيكية أثناء الخدمة في جميع العمليات.
+                </p>
+                <div style="margin-top: 8px;"><span class="code-pill">/pickupcam</span></div>
+            </div>
+            <div class="card">
+                <h3 data-ar="📻 /f و /r و /pr" data-en="📻 /f, /r and /pr">📻 /f و /r و /pr</h3>
+                <p data-ar="/f للـ OOC وخارج نطاق الـ Roleplay فقط. التواصل العملياتي يكون أساساً عبر /r وباستخدام Radio Codes. استعمل /pr للمعلومات والكودات اللازمة للعمل." data-en="/f is for OOC only. Tactical communication is via /r using Radio Codes. Use /pr for operational info.">
+                    <span class="code-pill">/f</span> للـ OOC وخارج نطاق الـ Roleplay فقط. التواصل العملياتي يكون أساساً عبر <span class="code-pill">/r</span> وباستخدام Radio Codes.
+                </p>
+            </div>
+            <div class="card">
+                <h3 data-ar="🔴 نهاية الخدمة" data-en="🔴 Off Duty">🔴 نهاية الخدمة</h3>
+                <p data-ar="عند Off Duty: انزع معدات وأسلحة الوحدة الخاصة، خذ Permissions عند الحاجة، وسجل خروجك وفق النظام المعتمد." data-en="When going Off Duty: remove all USGN tactical gear and weapons, get permissions if needed, and log off properly.">
+                    عند Off Duty: انزع معدات وأسلحة الوحدة الخاصة، خذ Permissions عند الحاجة، وسجل خروجك وفق النظام المعتمد.
+                </p>
+            </div>
+        </div>
+
+        <!-- DIVISIONS -->
+        <h2 id="divisions" class="section-title" data-ar="Divisions - فرق الوحدة" data-en="Divisions">Divisions - فرق الوحدة</h2>
+        <div class="grid-4">
+            <div class="card div-card" style="border-color: var(--accent-gold);">
+                <div class="div-code">USGN</div>
+                <div class="div-name">Unité Spéciale de la Garde Nationale</div>
+                <p data-ar="وحدة التدخل السريع والاقتحام، تحرير الرهائن، ومكافحة الإرهاب والعمليات عالية الخطورة." data-en="Rapid intervention, breaching, hostage rescue, counter-terrorism, and high-risk operations.">
+                    وحدة التدخل السريع والاقتحام، تحرير الرهائن، ومكافحة الإرهاب والعمليات عالية الخطورة.
+                </p>
+            </div>
+            <div class="card div-card">
+                <div class="div-code">SNIPER</div>
+                <div class="div-name">Reconnaissance & Precision</div>
+                <p data-ar="فرقة الاستطلاع والقنص التكتيكي وتأمين المحيط من النقاط المرتفعة أثناء المداهمات." data-en="Tactical reconnaissance, precision sniping, and perimeter overwatch during raids.">
+                    فرقة الاستطلاع والقنص التكتيكي وتأمين المحيط من النقاط المرتفعة أثناء المداهمات.
+                </p>
+            </div>
+            <div class="card div-card">
+                <div class="div-code">TR</div>
+                <div class="div-name">Training & Recruitment</div>
+                <p data-ar="تدريب المجندين، الاختبارات الميدانية والتكتيكية لإعداد عناصر USGN للخدمة." data-en="Recruit training, field tests, and tactical qualification for USGN operators.">
+                    تدريب المجندين، الاختبارات الميدانية والتكتيكية لإعداد عناصر USGN للخدمة.
+                </p>
+            </div>
+            <div class="card div-card">
+                <div class="div-code">IA</div>
+                <div class="div-name">Internal Affairs</div>
+                <p data-ar="تنظيم الانضباط العسكري، متابعة المخالفات، والحفاظ على نزاهة الوحدة الخاصة." data-en="Maintaining military discipline, investigating misconduct, and preserving unit integrity.">
+                    تنظيم الانضباط العسكري، متابعة المخالفات، والحفاظ على نزاهة الوحدة الخاصة.
+                </p>
+            </div>
+        </div>
+
+        <!-- GLOBAL COMMANDS -->
+        <h2 id="commands" class="section-title">Global Commands ⌨️</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="cmd-row"><span class="cmd-desc">التحدث خارج نطاق الشخصية OOC</span><span class="cmd-code">/f (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">التحدث في الراديو اللاسلكي IC</span><span class="cmd-code">/r (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">التحدث في راديو جميع الوحدات</span><span class="cmd-code">/d (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">التحدث مع نفس الفرقة</span><span class="cmd-code">/div (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">مضخم الصوت التكتيكي</span><span class="cmd-code">/m (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إظهار الشارة العسكرية لشخص</span><span class="cmd-code">/showbadge (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">فتح خزنة الأسلحة والبدلات التكتيكية</span><span class="cmd-code">/locker</span></div>
+                <div class="cmd-row"><span class="cmd-desc">وضع رقم النداء على المدرعة/السيارة</span><span class="cmd-code">/callsign</span></div>
+                <div class="cmd-row"><span class="cmd-desc">طلب دعم فوري لموقعك</span><span class="cmd-code">/backup</span></div>
+                <div class="cmd-row"><span class="cmd-desc">ارتداء أو إخفاء الشارة</span><span class="cmd-code">/badge</span></div>
+            </div>
+            <div class="card">
+                <div class="cmd-row"><span class="cmd-desc">تشغيل الإنذارات الصوتية</span><span class="cmd-code">/siren</span></div>
+                <div class="cmd-row"><span class="cmd-desc">وضع حاجز أمني</span><span class="cmd-code">/deploy</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إزالة حاجز</span><span class="cmd-code">/undeploy</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إزالة كل الحواجز</span><span class="cmd-code">/undeployall</span></div>
+                <div class="cmd-row"><span class="cmd-desc">عرض الفرق</span><span class="cmd-code">/division list</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إضافة عنصر لفرقة</span><span class="cmd-code">/division assign (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">طرد عنصر من فرقة</span><span class="cmd-code">/division kick (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">تجنيد / دعوة للوحدة</span><span class="cmd-code">/faction invite (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">طرد من الوحدة</span><span class="cmd-code">/faction kick (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">طرد عنصر غير متصل</span><span class="cmd-code">/faction offlinekick (text)</span></div>
+            </div>
+            <div class="card">
+                <div class="cmd-row"><span class="cmd-desc">منح رتبة عسكرية</span><span class="cmd-code">/faction rank (ID)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">معرفة حالة عناصر الوحدة</span><span class="cmd-code">/froster</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إعادة آليات الوحدة للمقر</span><span class="cmd-code">/frespawncars</span></div>
+                <div class="cmd-row"><span class="cmd-desc">بلاغ رسمي لجميع المواطنين</span><span class="cmd-code">/gov (text)</span></div>
+                <div class="cmd-row"><span class="cmd-desc">فتح قاعدة البيانات الأمنية</span><span class="cmd-code">/mdc</span></div>
+                <div class="cmd-row"><span class="cmd-desc">توجيه تهمة</span><span class="cmd-code">/su</span></div>
+                <div class="cmd-row"><span class="cmd-desc">تقييد أو فك القيود</span><span class="cmd-code">/cuff /uncuff</span></div>
+                <div class="cmd-row"><span class="cmd-desc">سحب أو إيقاف سحب المشتبه</span><span class="cmd-code">/drag</span></div>
+                <div class="cmd-row"><span class="cmd-desc">وضعه في الآلية</span><span class="cmd-code">/detain</span></div>
+                <div class="cmd-row"><span class="cmd-desc">إخراج الصاعق الكهربائي</span><span class="cmd-code">/tazer</span></div>
+            </div>
+        </div>
+
+        <!-- RADIO 10-CODES -->
+        <h2 id="codes" class="section-title">Radio 10-Codes 📻</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>المعنى / Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="code-col">10-1</td><td>أحتاج دعم في موقعي (Need Backup)</td></tr>
+                    <tr><td class="code-col">10-2</td><td>إلغاء طلب الدعم (Cancel Backup)</td></tr>
+                    <tr><td class="code-col">10-3</td><td>تم القبض على مشتبه به، عائد به للمقر</td></tr>
+                    <tr><td class="code-col">10-4</td><td>مفهوم / تم الاستلام (Copy / Affirmative)</td></tr>
+                    <tr><td class="code-col">10-13</td><td>أحتاج دعم في المطاردة</td></tr>
+                    <tr><td class="code-col">10-14</td><td>مجموعة مسلحة تطلق النار</td></tr>
+                    <tr><td class="code-col">10-15</td><td>سطو على بنك مع رهائن (تدخل USGN فوري)</td></tr>
+                    <tr><td class="code-col">10-16</td><td>سطو على بنك بدون رهائن</td></tr>
+                    <tr><td class="code-col">10-17</td><td>إطلاق نار داخل البنك</td></tr>
+                    <tr><td class="code-col">10-18</td><td>مطلوب سيارة إسعاف</td></tr>
+                    <tr><td class="code-col">10-19</td><td>الوضع تحت السيطرة (Code 4)</td></tr>
+                    <tr><td class="code-col">10-20</td><td>اجتماع طارئ في مقر USGN</td></tr>
+                    <tr><td class="code-col">20-20</td><td>إنهاء / إلغاء الاجتماع الطارئ</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BASIC RULES -->
+        <h2 id="rules" class="section-title">القوانين الأساسية 📜</h2>
+        <div class="grid-4">
+            <div class="card">
+                <h3>Public Rules</h3>
+                <div class="rule-item"><span class="rule-num">1</span>يمنع دخول الأحياء الخطرة دون أمر مباشر من قيادة USGN.</div>
+                <div class="rule-item"><span class="rule-num">2</span>مداهمة أي حي تتطلب 15 عنصراً على الأقل.</div>
+                <div class="rule-item"><span class="rule-num">3</span>يمنع استخدام الـ Tazer داخل الحي أثناء الاشتباك.</div>
+                <div class="rule-item"><span class="rule-num">4</span>العنصر الفاسد يعاقب بـ Ban و Delete Character.</div>
+                <div class="rule-item"><span class="rule-num">5</span>يجب احترام وتنفيذ أوامر الرتب العسكرية الأعلى.</div>
+                <div class="rule-item"><span class="rule-num">6</span>عند Off Duty انزع أسلحة الوحدة وخذ Permissions من القائد.</div>
+            </div>
+            <div class="card">
+                <h3>Charge Rules</h3>
+                <div class="rule-item"><span class="rule-num">1</span>لا تترك المقبوض عليه وحده لأكثر من 10 دقائق.</div>
+                <div class="rule-item"><span class="rule-num">2</span>يسمح بتفتيش من قام بـ Robbery أو Fight ومصادرة الأسلحة فقط.</div>
+                <div class="rule-item"><span class="rule-num">3</span>وثّق القضايا والتقارير بدقة.</div>
+                <div class="rule-item"><span class="rule-num">4</span>للمواطن حق المحامي ومكالمة هاتفية واحدة.</div>
+                <div class="rule-item"><span class="rule-num">5</span>القضايا الكبرى والإرهابية تحوّل للمحكمة.</div>
+                <div class="rule-item"><span class="rule-num">6</span>6 قضايا كحد أقصى، وما زاد يحول للمحكمة.</div>
+            </div>
+            <div class="card">
+                <h3>Citizen Masqué & Fines</h3>
+                <div class="rule-item"><span class="rule-num">1</span>المرة الأولى للمقنع: تنبيه + قضية + غرامة.</div>
+                <div class="rule-item"><span class="rule-num">2</span>المرة الثانية: إيقافه واحتجازه وتفتيشه.</div>
+                <div class="rule-item"><span class="rule-num">3</span>يمنع اختراع أو تلفيق قضية من تلقاء نفسك.</div>
+            </div>
+            <div class="card">
+                <h3>Fight & Raids</h3>
+                <div class="rule-item"><span class="rule-num">1</span>مداهمة أو الهجوم على Gang تتطلب 15 عنصراً كحد أدنى.</div>
+                <div class="rule-item"><span class="rule-num">2</span>مداهمة منظمة كبرى مثل Terro / Hitman تتطلب 20 عنصراً كحد أدنى.</div>
+                <div class="rule-item"><span class="rule-num">3</span>في حالة الطوارئ يسمح بالتفتيش حسب حالة الاستنفار.</div>
+                <div class="rule-item"><span class="rule-num">4</span>أي استخدام للقوة يبقى خاضعاً لـ Force Matrix والأوامر.</div>
+            </div>
+        </div>
+
+        <!-- FORCE MATRIX -->
+        <h2 id="matrix" class="section-title">Force Matrix 🛡️</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Force Matrix (الأفراد)</h3>
+                <div class="matrix-level">
+                    <h4>Level 1</h4>
+                    <p>إهانات أو عدوانية لفظية: تحذيرات شفهية وتهدئة فقط.</p>
+                </div>
+                <div class="matrix-level">
+                    <h4>Level 2</h4>
+                    <p>اعتداء جسدي أو تهديد غير ناري: Tazer أو Pepper Spray أو Baton حسب الحالة. لا سلاح ناري.</p>
+                </div>
+                <div class="matrix-level">
+                    <h4>Level 3</h4>
+                    <p>تهديد حقيقي للحياة أو سلاح ناري: اطلب الدعم، اسحب السلاح وصوّب، لكن لا تطلق النار قبل Level 4.</p>
+                </div>
+                <div class="matrix-level lvl-4">
+                    <h4>Level 4</h4>
+                    <p>إطلاق نار أو جريمة إرهابية أو تهديد قاتل مباشر: القوة القاتلة عند الضرورة مع طلب دعم إضافي.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>🚓 Vehicle Force Matrix (المركبات)</h3>
+                <div class="matrix-level">
+                    <h4>Level 1</h4>
+                    <p>قيادة متهورة: اطلب التوقف وإطفاء المحرك.</p>
+                </div>
+                <div class="matrix-level">
+                    <h4>Level 2</h4>
+                    <p>رفض التوقف أو الهروب: اطلب الدعم وواصل المطاردة التكتيكية.</p>
+                </div>
+                <div class="matrix-level">
+                    <h4>Level 3</h4>
+                    <p>خطر كبير أو رهائن أو اصطدامات: جهّز الحواجز ولا تطلق النار على السيارة.</p>
+                </div>
+                <div class="matrix-level lvl-4">
+                    <h4>Level 4</h4>
+                    <p>إطلاق نار من المركبة أو تهديد جسيم: يمكن إطلاق النار على الإطارات/السيارة، مع أولوية سلامة المدنيين والقبض عليه حياً.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAZER RULES -->
+        <h2 id="tazer" class="section-title">Tazer Rules ⚡</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3 style="color: var(--success);">🚫 القاعدة الأساسية</h3>
+                <p style="margin-bottom: 15px;">الصاعق وسيلة للسيطرة وليس للفوز في القتال. يمنع استخدامه أثناء Fight أو Fight Roleplay أو تبادل الضربات المباشر.</p>
+                <div class="matrix-level" style="border-color: var(--success);">
+                    <h4 style="color: var(--success);">✅ يسمح باستخدامه</h4>
+                    <p>عند هروب المشتبه به على قدميه أو مقاومته الاعتقال دون قتال مباشر، وبعد أوامر واضحة ورفض الامتثال.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--danger);">❌ يمنع استخدامه</h3>
+                <p style="margin-bottom: 15px;">داخل أحياء العصابات، أثناء القيادة، على شخص بدرجة متحركة، على شخص داخل سيارة، أثناء Fight مسلح، ضد مقيد أو مستسلم، أو بشكل Spam.</p>
+                <div class="matrix-level lvl-4">
+                    <h4>🛑 بعد انتهاء الـ Fight</h4>
+                    <p>إذا انتهى القتال وبدأ الشخص بالهرب، أعد تقييم الوضع. لا تستخدم الـ Tazer تلقائياً دون سبب واضح.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHARGES -->
+        <h2 id="charges" class="section-title">قائمة الاتهامات والمخالفات ⚖️</h2>
+        <div class="grid-4">
+            <div class="card">
+                <h3>⚖️ Law & Justice</h3>
+                <div class="charge-item"><span class="charge-title">Evading Arrest:</span><span class="charge-desc">الهروب من الوحدات أثناء محاولة الإيقاف.</span></div>
+                <div class="charge-item"><span class="charge-title">Failure to Comply:</span><span class="charge-desc">رفض الانصياع لأوامر قانونية مباشرة.</span></div>
+                <div class="charge-item"><span class="charge-title">Impersonating a LEO:</span><span class="charge-desc">انتحال صفة رجل أمن أو عنصر حرس.</span></div>
+                <div class="charge-item"><span class="charge-title">Bribery:</span><span class="charge-desc">تقديم أو طلب رشوة مقابل مصلحة غير قانونية.</span></div>
+                <div class="charge-item"><span class="charge-title">Obstruction of Justice:</span><span class="charge-desc">تعطيل العدالة أو إتلاف الأدلة.</span></div>
+                <div class="charge-item"><span class="charge-title">Lie on Law:</span><span class="charge-desc">تقديم معلومات كاذبة أو مضللة.</span></div>
+            </div>
+            <div class="card">
+                <h3>🔫 Weapons & Narcotics</h3>
+                <div class="charge-item"><span class="charge-title">Possession of Illegal Firearms:</span><span class="charge-desc">حيازة سلاح غير مرخص.</span></div>
+                <div class="charge-item"><span class="charge-title">Brandishing a Firearm:</span><span class="charge-desc">إشهار السلاح في العلن بطريقة تهديدية.</span></div>
+                <div class="charge-item"><span class="charge-title">Discharge of a Firearm:</span><span class="charge-desc">إطلاق النار داخل المدينة دون مبرر قانوني.</span></div>
+                <div class="charge-item"><span class="charge-title">Distribution of Firearms:</span><span class="charge-desc">بيع أو تهريب أو تصنيع أسلحة غير مرخصة.</span></div>
+                <div class="charge-item"><span class="charge-title">Illegal Narcotics:</span><span class="charge-desc">حيازة أو بيع أو توزيع المخدرات.</span></div>
+            </div>
+            <div class="card">
+                <h3>🩸 Violent Crimes</h3>
+                <div class="charge-item"><span class="charge-title">Assault:</span><span class="charge-desc">تهديد شخص أو محاولة ضربه وإخافته.</span></div>
+                <div class="charge-item"><span class="charge-title">Vehicular Assault:</span><span class="charge-desc">تعمد صدم شخص أو إيذائه بالمركبة.</span></div>
+                <div class="charge-item"><span class="charge-title">Attempted Murder:</span><span class="charge-desc">محاولة قتل شخص مع فشل الجريمة.</span></div>
+                <div class="charge-item"><span class="charge-title">Murder:</span><span class="charge-desc">القتل العمد.</span></div>
+                <div class="charge-item"><span class="charge-title">Kidnapping:</span><span class="charge-desc">خطف شخص واحتجازه بالقوة.</span></div>
+                <div class="charge-item"><span class="charge-title">Terrorism:</span><span class="charge-desc">أعمال إرهابية أو تهديد الأمن العام.</span></div>
+            </div>
+            <div class="card">
+                <h3>🏛️ Public Order & Property</h3>
+                <div class="charge-item"><span class="charge-title">Rioting in City:</span><span class="charge-desc">المشاركة في أعمال شغب أو تخريب.</span></div>
+                <div class="charge-item"><span class="charge-title">Belonging to a Gang:</span><span class="charge-desc">ثبوت الانتماء إلى عصابة إجرامية.</span></div>
+                <div class="charge-item"><span class="charge-title">Grand Theft Auto:</span><span class="charge-desc">سرقة سيارة أو مركبة مملوكة للغير.</span></div>
+                <div class="charge-item"><span class="charge-title">Robbery:</span><span class="charge-desc">السطو أو السرقة بالقوة والتهديد.</span></div>
+                <div class="charge-item"><span class="charge-title">Trespassing:</span><span class="charge-desc">دخول مكان عسكري أو حكومي محظور دون إذن.</span></div>
+            </div>
+        </div>
+
+        <!-- RANKS -->
+        <h2 id="ranks" class="section-title">Ranks - الرتب العسكرية 🎖️</h2>
+        <div class="ranks-grid">
+            <div class="rank-card high-command">
+                <div class="rank-name">General</div>
+                <div class="rank-num">(12)</div>
+            </div>
+            <div class="rank-card high-command">
+                <div class="rank-name">Lieutenant General</div>
+                <div class="rank-num">(11)</div>
+            </div>
+            <div class="rank-card high-command">
+                <div class="rank-name">Major General</div>
+                <div class="rank-num">(10)</div>
+            </div>
+            <div class="rank-card high-command">
+                <div class="rank-name">Brigadier General</div>
+                <div class="rank-num">(9)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Colonel</div>
+                <div class="rank-num">(8)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Lieutenant Colonel</div>
+                <div class="rank-num">(7)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Major</div>
+                <div class="rank-num">(6)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Captain</div>
+                <div class="rank-num">(5)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Lieutenant</div>
+                <div class="rank-num">(4)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Sergeant</div>
+                <div class="rank-num">(3)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Corporal</div>
+                <div class="rank-num">(2)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Soldier</div>
+                <div class="rank-num">(1)</div>
+            </div>
+            <div class="rank-card">
+                <div class="rank-name">Private</div>
+                <div class="rank-num">(0)</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        USGN - Unité Spéciale de la Garde Nationale &copy; 2026 | Tactical Handbook
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            const body = document.body;
+            const btns = document.querySelectorAll('.lang-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            if (lang === 'en') {
+                body.setAttribute('dir', 'ltr');
+                btns[1].classList.add('active');
+            } else {
+                body.setAttribute('dir', 'rtl');
+                btns[0].classList.add('active');
+            }
+
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+        }
+    </script>
+</body>
+</html>
